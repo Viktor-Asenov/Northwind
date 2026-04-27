@@ -45,7 +45,6 @@ All feature-specific UI components live under `src/components`:
 | `src/components/OrderDetails.tsx`  | Per-customer order breakdown                                    |
 | `src/components/ui/`               | Shadcn primitive components (button, input, table, badge)       |
 | `src/api/`                         | Auto-generated typed API client (managed by `npm run generate`) |
-| `src/lib/apiConfig.ts`             | Configures the generated client with the base URL from `.env`   |
 
 ---
 
