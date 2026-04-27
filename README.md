@@ -79,3 +79,22 @@ All feature-specific UI components live under `src/components`:
 3. **Component Scaffolding:** `CustomerTable` and `OrderDetails` built inside `src/components` using typed models from the generated client.
 4. **Integration:** Components connect to live `NorthwindWs` endpoints via `CustomersApi` and `OrdersApi` instantiated with `apiConfig`.
 5. **Validation:** Confirm `.env` contains the correct `VITE_API_BASE_URL`, run `npm run generate` while the API is live, then `npm run dev` to verify end-to-end data flow.
+
+---
+
+## Section 8 — Future Improvements
+
+### 🎨 Advanced UI/UX Design
+* **Dark Mode:** Implementation of a Dark Mode toggle using `next-themes` for better accessibility and user preference.
+* **Framer Motion Animations:** Adding smooth page transitions and micro-interactions when opening customer details.
+* **Data Visualization:** Integration of **Shadcn Charts** to visualize customer ordering trends over time.
+
+### ⚙️ Enhanced Data Handling
+* **TanStack Query (React Query):** Transitioning from standard Fetch to TanStack Query for robust server-state management, caching, and background data synchronization.
+* **Optimistic UI:** Implementation of optimistic UI updates to achieve a "zero-latency" user experience.
+
+### 🔍 Traceability Integration
+* **Automated Headers:** Extending the API client to automatically inject `Input-Request-Id` and `Input-Timestamp` headers, in sync with the Backend Traceability Middleware.
+
+### ⚡ Performance
+* **Virtual Scrolling:** Implementation of virtualization for the Customer Table to handle extremely large datasets without performance degradation.
