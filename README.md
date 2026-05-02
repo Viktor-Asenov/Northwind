@@ -84,17 +84,25 @@ All feature-specific UI components live under `src/components`:
 
 ## Section 8 — Future Improvements
 
+### 🔐 Authentication
+
+- **Login / Logout:** Implementation of a Login/Logout flow to restrict access to authenticated users only. This would include protected routes, a login page with credential validation, JWT/session token handling, and a logout button in the header that clears the session.
+
 ### 🎨 Advanced UI/UX Design
-* **Dark Mode:** Implementation of a Dark Mode toggle using `next-themes` for better accessibility and user preference.
-* **Framer Motion Animations:** Adding smooth page transitions and micro-interactions when opening customer details.
-* **Data Visualization:** Integration of **Shadcn Charts** to visualize customer ordering trends over time.
+
+- **Dark Mode:** Implementation of a Dark Mode toggle using `next-themes` for better accessibility and user preference.
+- **Framer Motion Animations:** Adding smooth page transitions and micro-interactions when opening customer details.
+- **Data Visualization:** Integration of **Shadcn Charts** to visualize customer ordering trends over time.
 
 ### ⚙️ Enhanced Data Handling
-* **TanStack Query (React Query):** Transitioning from standard Fetch to TanStack Query for robust server-state management, caching, and background data synchronization.
-* **Optimistic UI:** Implementation of optimistic UI updates to achieve a "zero-latency" user experience.
+
+- **TanStack Query (React Query):** Transitioning from standard Fetch to TanStack Query for robust server-state management, caching, and background data synchronization.
+- **Optimistic UI:** Implementation of optimistic UI updates to achieve a "zero-latency" user experience.
 
 ### 🔍 Traceability Integration
-* **Automated Headers:** Extending the API client to automatically inject `Input-Request-Id` and `Input-Timestamp` headers, in sync with the Backend Traceability Middleware.
+
+- **Automated Headers:** Extending the API client to automatically inject `Input-Request-Id` and `Input-Timestamp` headers, in sync with the Backend Traceability Middleware.
 
 ### ⚡ Performance
-* **Virtual Scrolling:** Implementation of virtualization for the Customer Table to handle extremely large datasets without performance degradation.
+
+- **Virtual Scrolling:** Implementation of virtualization for the Customer Table to handle extremely large datasets without performance degradation.
