@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { customerService } from '@/services/customerService';
-import { orderService } from '@/services/orderService';
 import type { Customer, Order } from '@/api';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -27,13 +26,11 @@ export function OrderDetails() {
 
   useEffect(() => {
     if (!customerId) return;
-    Promise.all([
-      customerService.getById(customerId),
-      orderService.getByCustomer(customerId),
-    ])
-      .then(([cust, ords]) => {
+    customerService
+      .getById(customerId)
+      .then((cust) => {
         setCustomer(cust);
-        setOrders(ords);
+        setOrders(cust.orders || []);
       })
       .catch(() => setError('Failed to load customer details.'))
       .finally(() => setLoading(false));
@@ -162,22 +159,13 @@ export function OrderDetails() {
                   Order #
                 </TableHead>
                 <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Ordered
+                  Order Date
                 </TableHead>
-                <TableHead className="hidden sm:table-cell text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Required By
+                <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Total Value
                 </TableHead>
-                <TableHead className="hidden sm:table-cell text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Shipped
-                </TableHead>
-                <TableHead className="hidden md:table-cell text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Ship To
-                </TableHead>
-                <TableHead className="hidden sm:table-cell text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Freight
-                </TableHead>
-                <TableHead className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                  Status
+                <TableHead className="text-right text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  Items
                 </TableHead>
               </TableRow>
             </TableHeader>
@@ -193,38 +181,13 @@ export function OrderDetails() {
                   <TableCell className="text-sm">
                     {fmt(order.orderDate)}
                   </TableCell>
-                  <TableCell className="hidden sm:table-cell text-sm text-muted-foreground">
-                    {fmt(order.requiredDate)}
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell text-sm text-muted-foreground">
-                    {fmt(order.shippedDate)}
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    {order.shipName && (
-                      <div>
-                        <div className="text-sm font-medium">
-                          {order.shipName}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {[order.shipCity, order.shipCountry]
-                            .filter(Boolean)
-                            .join(', ')}
-                        </div>
-                      </div>
-                    )}
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell text-right font-mono text-sm">
-                    {order.freight != null
-                      ? `$${order.freight.toFixed(2)}`
+                  <TableCell className="text-right text-sm font-medium">
+                    {order.totalValue != null
+                      ? `$${order.totalValue.toFixed(2)}`
                       : '—'}
                   </TableCell>
-                  <TableCell>
-                    <Badge
-                      variant={order.shippedDate ? 'default' : 'secondary'}
-                      className="text-xs"
-                    >
-                      {order.shippedDate ? 'Shipped' : 'Pending'}
-                    </Badge>
+                  <TableCell className="text-right text-sm text-muted-foreground">
+                    {order.productCount}
                   </TableCell>
                 </TableRow>
               ))}

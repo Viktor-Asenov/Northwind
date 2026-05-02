@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+import type { Order } from './Order';
 
 export interface Customer {
   customerId?: string | null;
@@ -13,4 +14,5 @@ export interface Customer {
   country?: string | null;
   phone?: string | null;
   fax?: string | null;
+  orders?: Order[] | null;
 }
